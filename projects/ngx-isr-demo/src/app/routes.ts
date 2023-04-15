@@ -8,7 +8,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () => import('./components/home.component'),
-        data: { revalidate: 5 },
+        data: { revalidate: 100 },
       },
       {
         path: "one",
@@ -36,7 +36,7 @@ export const routes: Routes = [
       {
         path: "details/:id",
         loadComponent: () => import('./components/details.component'),
-        data: { revalidate: 10 },
+        data: { revalidate: 100 },
         title: 'Details',
       },
     ]

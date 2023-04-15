@@ -4,4 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `<router-outlet></router-outlet>`,
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    setTimeout(() => {
+      console.log('Hello from the app component!');
+    }, 2000);
+  }
+}

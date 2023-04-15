@@ -25,6 +25,7 @@
     "@angular/platform-server": "^15.0.4",
     "@angular/router": "^15.0.4",
     "@nguniversal/express-engine": "15.0.0",
+    "@push-based/user-flow": "^0.18.6",
     "express": "^4.18.1",
     "ioredis": "^5.2.4",
     "rxjs": "~7.5.5",

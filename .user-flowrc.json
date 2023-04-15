@@ -1,0 +1,19 @@
+{
+  "collect": {
+    "config": {
+      "extends": "lighthouse:default",
+      "settings": {
+        "onlyCategories": ["performance"]
+      }
+    },
+    "url": "http://localhost:4202/details/1",
+    "ufPath": "./user-flows",
+    "serveCommand": "npm run dev:ssr -- --port 4202",
+    "awaitServeStdout": "our browser on http://localhost:4202"
+  },
+  "persist": { "outPath": "./measures", "format": ["html", "md"] },
+  "assert": {
+    "budgets": [
+    ]
+  }
+}
