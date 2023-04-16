@@ -140,7 +140,8 @@ export class ISRHandler {
       let finalHtml = html;
       if(config?.modifyCachedHtml) {
         const timeStart = performance.now();
-        finalHtml = config.modifyCachedHtml(req, html);
+        const result = config.modifyCachedHtml(html);
+        finalHtml = result instanceof Promise ? await result : result;
         const totalTime = performance.now() - timeStart;
         finalHtml += `<!--\nℹ️ NgxISR: This cachedHtml has been modified with modifyCachedHtml()\n❗️ This resulted into more ${totalTime.toFixed(2)}ms of processing time.\n-->`;
       }
@@ -171,8 +172,12 @@ export class ISRHandler {
     renderUrl(renderUrlConfig).then(async (html) => {
       const { revalidate, errors } = getISROptions(html);
 
-      // Apply the callback if given
-      const finalHtml = config?.modifyGeneratedHtml ? config.modifyGeneratedHtml(req, html) : html;
+      // Apply modifyGeneratedHtml if given
+      let finalHtml = html;
+      if(config?.modifyGeneratedHtml) {
+         const result = config.modifyGeneratedHtml(html);
+         finalHtml = result instanceof Promise ? await result : result;
+      }
 
       // if we have any http errors when rendering the site, and we have skipCachingOnHttpError enabled
       // we don't want to cache it, and, we will fall back to client side rendering

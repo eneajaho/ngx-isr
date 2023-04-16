@@ -18,7 +18,7 @@ export interface ServeFromCacheConfig {
    * modify the <html> tag to include classes that indicates support for webp/avif image formats, per-request.
    * Use with caution as this may lead to a performance loss on serving the html.
    */
-  modifyCachedHtml?: (req: Request, html: string) => string;
+  modifyCachedHtml?: (html: string) => string | Promise<string>;
 }
 
 export interface InvalidateConfig {
@@ -32,5 +32,5 @@ export interface RenderConfig {
    * necessary on-the-fly.
    * Use with caution as this may lead to a performance loss on serving the html.
    */
-  modifyGeneratedHtml?: (req: Request, html: string) => string;
+  modifyGeneratedHtml?: (html: string) => string | Promise<string>;
 }
