@@ -336,8 +336,8 @@ function getFileFullPath(fileName: string, cacheFolderPath: string): string {
  * @returns {string} The modified string representing the file name obtained by replacing '/' characters with '__'.
  */
 function convertRouteToFileName(route: string): string {
-  // replace all occurrences of '/' character in the 'route' string with '__' using regular expression
-  return route.replace(new RegExp('/', 'g'), '__');
+  // replace all special characters in the 'route' string with '__' using regular expression
+  return route.replace(new RegExp('[^\w\d-]', 'g'), '__');
 }
 
 /**
