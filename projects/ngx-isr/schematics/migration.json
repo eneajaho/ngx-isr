@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "update-0.5.6": {
+      "version": "0.5.6",
+      "description": "Migrate to sub-entry points",
+      "factory": "./src/migrations/update-0.5.6/index"
+    }
+  }
+}
