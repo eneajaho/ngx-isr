@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`isr migration update-16.0.0 should replace ngx-isr/browser 1`] = `
+"import { BrowserModule } from '@angular/platform-browser';
+import { NgxIsrService } from 'ngx-isr/browser';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+"
+`;
+
+exports[`isr migration update-16.0.0 should replace ngx-isr/models 1`] = `
+"import { BrowserModule } from '@angular/platform-browser';
+import { NgxIsrService } from 'ngx-isr/browser';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+"
+`;
+
+exports[`isr migration update-16.0.0 should replace ngx-isr/server 1`] = `
+"import {
+  NgxIsrModule,
+  provideISR,
+  ISRHandler,
+  FileSystemCacheHandler,
+  FileSystemCacheOptions,
+} from '@rx-angular/isr/server';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+"
+`;
