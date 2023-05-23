@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`isr migration update-16.0.0 should add new and remove old dependencies 1`] = `
+"{
+  "dependencies": {
+    "@rx-angular/isr": "16.0.0"
+  }
+}
+"
+`;
+
 exports[`isr migration update-16.0.0 should replace ngx-isr/browser 1`] = `
 "import { BrowserModule } from '@angular/platform-browser';
 import { NgxIsrService } from 'ngx-isr/browser';

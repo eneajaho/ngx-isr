@@ -15,7 +15,7 @@ import { formatFiles } from './format-files';
 type ImportConfig = Pick<ImportSpecifierStructure, 'alias' | 'name'>;
 type RenameConfig = Record<string, string | [string, string]>;
 
-export function renamingRule(packageName: Pattern, renames: RenameConfig) {
+export function renamingRule(packageName: Pattern, renames: RenameConfig): Rule {
   const getRename = configureRenames(renames);
 
   return (): Rule => {

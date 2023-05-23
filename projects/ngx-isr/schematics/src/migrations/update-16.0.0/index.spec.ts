@@ -4,6 +4,9 @@ import {
   UnitTestTree,
 } from '@angular-devkit/schematics/testing';
 import * as path from 'path';
+import {addPackageJsonDependency, removePackageJsonDependency} from "ng-morph";
+import {NodeDependencyType} from "ng-morph/json/helpers/dependencies";
+import {NodeDependency} from "@schematics/angular/utility/dependencies";
 
 describe('isr migration update-16.0.0', () => {
   let appTree: UnitTestTree | undefined;
@@ -87,7 +90,7 @@ describe('isr migration update-16.0.0', () => {
 
   function setupTestFile(fileInput: string, filePath = './app.module.ts') {
     const runner = new SchematicTestRunner(
-      'ngx-isr/server',
+      'ngx-isr',
       path.join(__dirname, '../../../migration.json')
     );
     const tree = new UnitTestTree(Tree.empty());
@@ -96,4 +99,5 @@ describe('isr migration update-16.0.0', () => {
 
     return runner.runSchematic(`update-16.0.0`, {}, tree);
   }
+
 });
