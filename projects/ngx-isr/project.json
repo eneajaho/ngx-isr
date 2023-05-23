@@ -1,5 +1,15 @@
 {
   "name": "ngx-isr",
+  "license": "MIT",
+  "engines": {
+    "node": "^18.10.0",
+    "yarn": "^1.22.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rx-angular/rx-angular.git"
+  },
+  "author": "Enea Jahollari <jahollarienea14@gmail.com>",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "projects/ngx-isr/src",
@@ -35,5 +45,11 @@
         }
       }
     }
+  },
+  "ng-add": {
+    "save": "dependencies"
+  },
+  "ng-update": {
+    "migrations": "./schematics/migration.json"
   }
 }
