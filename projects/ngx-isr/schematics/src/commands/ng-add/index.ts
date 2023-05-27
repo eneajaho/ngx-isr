@@ -5,20 +5,19 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import {
-  NodeDependency,
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
-import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import { addPackageJsonDependency } from '@schematics/angular/utility/dependencies';
+import {NodePackageInstallTask} from '@angular-devkit/schematics/tasks';
+import {addPackageJsonDependency} from '@schematics/angular/utility/dependencies';
 
-import { Dependency } from '../../utils/dependency';
-import { getLatestNodeVersion } from '../../utils/get-latest-node-version';
+import {Dependency} from '../../utils/dependency';
+import {getLatestNodeVersion} from '../../utils/get-latest-node-version';
 import {removePackageJsonDependency} from "ng-morph";
-import {getVersion} from "jest";
+
 
 const dependencies: Dependency[] = [
   {
-    type: NodeDependencyType.Dev,
+    type: NodeDependencyType.Default,
     name: '@rx-angular/isr',
     overwrite: true,
   },
@@ -26,7 +25,7 @@ const dependencies: Dependency[] = [
 
 const old_dependencies: Dependency =
   {
-    type: NodeDependencyType.Dev,
+    type: NodeDependencyType.Default,
     name: 'ngx-isr',
     overwrite: true,
   };
@@ -40,7 +39,7 @@ function addPackageJsonDependencies(packages: Dependency[]): Rule {
       context.logger.info(`❌️ Removed dependency ${old_dependencies.name}`);
 
       const version = await getLatestNodeVersion(dependency.name);
-      addPackageJsonDependency(tree, { ...dependency, version });
+      addPackageJsonDependency(tree, {...dependency, version});
       context.logger.info(`✅️ Added dependency ${dependency.name}@${version}`);
     }
   };

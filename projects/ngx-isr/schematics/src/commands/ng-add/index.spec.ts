@@ -5,8 +5,6 @@ import {
 import { join } from 'path';
 import { readJsonInTree } from '../../utils/read-json-in-tree';
 
-
-
 const collectionPath = join(__dirname, '../../../collection.json');
 
 const workspaceOptions = {
@@ -18,6 +16,17 @@ const workspaceOptions = {
 const defaultAppOptions = {
   name: 'ngx-isr',
 };
+
+const packageJsonContent = {
+  "name": "my-package",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "ngx-isr": "^0.5.5",
+  },
+  "devDependencies": {}
+}
 
 describe('ng-add schematic', () => {
   let appTree: UnitTestTree;
@@ -42,15 +51,24 @@ describe('ng-add schematic', () => {
         defaultAppOptions,
         appTree
       );
+
+    appTree.overwrite('package.json', JSON.stringify(packageJsonContent));
+
   });
 
   it('should add proper package to dependencies', async () => {
+    const packageJsonBefore = readJsonInTree(appTree, 'package.json');
+
+    expect(packageJsonBefore.dependencies['ngx-isr']).toBeDefined();
+    expect(packageJsonBefore.dependencies['@rx-angular/isr']).toBeUndefined();
+
     const tree = await schematicRunner
       .runSchematic('ng-add', undefined, appTree);
 
     const packageJson = readJsonInTree(tree, 'package.json');
 
-    expect(packageJson.devDependencies['ngx-isr']).toBeUndefined();
+    expect(packageJson.dependencies['ngx-isr']).toBeUndefined();
     expect(packageJson.dependencies['@rx-angular/isr']).toBeDefined();
   });
+
 });
