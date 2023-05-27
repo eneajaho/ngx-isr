@@ -57,5 +57,8 @@
     "@nx/angular:component": {
       "style": "scss"
     }
+  },
+  "affected": {
+    "defaultBase": "origin/main"
   }
 }
