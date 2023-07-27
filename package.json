@@ -10,7 +10,7 @@
     "ng": "ng",
     "start": "nx build ngx-isr && nx run docs:serve-ssr",
     "watch": "nx build ngx-isr --watch --configuration development",
-    "test": "nx test",
+    "test": "nx test ngx-isr",
     "dev:ssr": "nx run docs:serve-ssr",
     "serve:ssr": "node dist/docs/server/main.js",
     "serve-demo:ssr": "PORT=4001 node dist/ngx-isr-demo/server/main.js",
