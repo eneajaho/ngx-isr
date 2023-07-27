@@ -31,9 +31,10 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Test
-        run: npm run test
+        
+# There are no tests currently
+#       - name: Test
+#         run: npm run test
 
       - name: Production build
         run: npm run build-vercel
