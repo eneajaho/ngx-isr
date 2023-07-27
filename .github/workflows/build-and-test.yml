@@ -5,9 +5,21 @@ name: Deploy on PR
 'on': pull_request
 jobs:
   build_and_preview:
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
+        # needed for all cases
+      - if: github.event_name == 'push' && github.ref_name == 'main'
+        uses: actions/checkout@v3
+          # needed for nx affected command
+      - if: github.event_name == 'pull_request'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          # needed for nx affected command
+      - if: github.event_name == 'pull_request'
+        run: git fetch --no-tags --depth=1 origin $BASE_BRANCH
+
+  steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
 
