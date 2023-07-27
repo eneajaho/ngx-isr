@@ -19,7 +19,6 @@ jobs:
       - if: github.event_name == 'pull_request'
         run: git fetch --no-tags --depth=1 origin $BASE_BRANCH
 
-  steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
 
