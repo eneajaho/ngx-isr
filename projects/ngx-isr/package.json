@@ -29,5 +29,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/eneajaho/ngx-isr"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "dependencies"
+  },
+  "ng-update": {
+    "migrations": "./schematics/migration.json"
   }
 }

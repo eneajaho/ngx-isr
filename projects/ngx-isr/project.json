@@ -1,21 +1,10 @@
 {
-  "name": "ngx-isr",
-  "license": "MIT",
-  "engines": {
-    "node": "^18.10.0",
-    "yarn": "^1.22.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rx-angular/rx-angular.git"
-  },
-  "author": "Enea Jahollari <jahollarienea14@gmail.com>",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "projects/ngx-isr/src",
   "prefix": "lib",
   "targets": {
-    "build": {
+    "build-package": {
       "executor": "@angular-devkit/build-angular:ng-packagr",
       "options": {
         "project": "projects/ngx-isr/ng-package.json"
@@ -31,6 +20,18 @@
       "defaultConfiguration": "production",
       "outputs": ["{workspaceRoot}/dist/ngx-isr"]
     },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          {"command": "nx run ngx-isr:build-package"},
+          {"command": "tsc -p ./projects/ngx-isr/tsconfig.schematics.json"},
+          {"command": "copyfiles projects/ngx-isr/schematics/collection.json dist/ngx-isr/schematics -f"},
+          {"command": "copyfiles projects/ngx-isr/schematics/migration.json dist/ngx-isr/schematics -f"}
+        ]
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -45,11 +46,5 @@
         }
       }
     }
-  },
-  "ng-add": {
-    "save": "dependencies"
-  },
-  "ng-update": {
-    "migrations": "./schematics/migration.json"
   }
 }

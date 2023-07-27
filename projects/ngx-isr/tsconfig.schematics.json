@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "lib": ["es2019"],
+    "lib": ["ES2020"],
     "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -12,7 +12,7 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "rootDir": "schematics",
-    "outDir": "../../dist/libs/state/schematics",
+    "outDir": "../../dist/ngx-isr/schematics/ng-update",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": false,
@@ -20,6 +20,6 @@
     "target": "es6",
     "types": ["node"]
   },
-  "include": ["schematics/**/*"],
+  "include": ["schematics/**/*.ts", "schematics/**/*.json"],
   "exclude": ["schematics/**/*.spec.ts", "schematics/**/*.test.ts"]
 }
