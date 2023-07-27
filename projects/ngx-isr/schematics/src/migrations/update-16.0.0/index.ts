@@ -22,4 +22,11 @@ const renames: Record<string, string | [string, string]> = {
   'RouteISRConfig': '@rx-angular/isr/models'
 };
 
-export default renamingRule('ngx-isr/server', renames);
+const classRenames: Record<string, string> = {
+  'NgxIsrModule': 'IsrModule',
+  'NgxIsrService': 'IsrService',
+  'NgxIsrState': 'IsrState',
+  'INgxIsrService': 'IsrServiceInterface'
+};
+
+export default renamingRule('ngx-isr/server', renames, classRenames);

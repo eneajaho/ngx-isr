@@ -4,14 +4,11 @@ import {
   UnitTestTree,
 } from '@angular-devkit/schematics/testing';
 import * as path from 'path';
-import {addPackageJsonDependency, removePackageJsonDependency} from "ng-morph";
-import {NodeDependencyType} from "ng-morph/json/helpers/dependencies";
-import {NodeDependency} from "@schematics/angular/utility/dependencies";
 
 describe('isr migration update-16.0.0', () => {
   let appTree: UnitTestTree | undefined;
 
-  it('should replace ngx-isr/server', async () => {
+  it('should replace ngx-isr/server and class names', async () => {
     appTree = await setupTestFile(`
       import { BrowserModule } from '@angular/platform-browser';
       import { NgxIsrModule,
@@ -27,7 +24,8 @@ describe('isr migration update-16.0.0', () => {
           AppComponent,
         ],
         imports: [
-          BrowserModule
+          BrowserModule,
+          NgxIsrModule.forRoot()
         ],
         bootstrap: [AppComponent]
       })
@@ -40,10 +38,10 @@ describe('isr migration update-16.0.0', () => {
     expect(file).toMatchSnapshot();
   });
 
-  it('should replace ngx-isr/models', async () => {
+  it('should replace ngx-isr/models and class names', async () => {
     appTree = await setupTestFile(`
       import { BrowserModule } from '@angular/platform-browser';
-      import { NgxIsrService } from 'ngx-isr/browser';
+      import { INgxIsrService, NgxIsrState } from 'ngx-isr/models';
       import { AppComponent } from './app.component';
 
       @NgModule({
@@ -64,7 +62,7 @@ describe('isr migration update-16.0.0', () => {
     expect(file).toMatchSnapshot();
   });
 
-  it('should replace ngx-isr/browser', async () => {
+  it('should replace ngx-isr/browser and class names', async () => {
     appTree = await setupTestFile(`
       import { BrowserModule } from '@angular/platform-browser';
       import { NgxIsrService } from 'ngx-isr/browser';
@@ -77,6 +75,7 @@ describe('isr migration update-16.0.0', () => {
         imports: [
           BrowserModule
         ],
+        providers: [NgxIsrService],
         bootstrap: [AppComponent]
       })
       export class AppModule { }

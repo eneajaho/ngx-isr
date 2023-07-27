@@ -14,9 +14,10 @@ import { formatFiles } from './format-files';
 
 type ImportConfig = Pick<ImportSpecifierStructure, 'alias' | 'name'>;
 type RenameConfig = Record<string, string | [string, string]>;
+type ClassRenameConfig = Record<string, string>;
 
-export function renamingRule(packageName: Pattern, renames: RenameConfig): Rule {
-  const getRename = configureRenames(renames);
+export function renamingRule(packageName: Pattern, renames: RenameConfig, classRenames: ClassRenameConfig): Rule {
+  const getRename = configureRenames(renames, classRenames);
 
   return (): Rule => {
     return chain([
@@ -100,19 +101,31 @@ function renameReferences(
     });
 }
 
-function configureRenames(renames: RenameConfig) {
+/**
+ * Returns a function that can be used to rename imports.
+ *
+ * @param renames
+ * @param classRenames
+ */
+function configureRenames(renames: RenameConfig, classRenames: ClassRenameConfig) {
   return (namedImport: string) => {
     if (renames[namedImport] == null) {
       return null;
     }
 
+    const newNamedImport = Array.isArray(renames[namedImport])
+      ? getNewClassName(renames[namedImport][0], classRenames)
+      : getNewClassName(namedImport, classRenames);
+
     return {
-      namedImport: Array.isArray(renames[namedImport])
-        ? renames[namedImport][0]
-        : namedImport,
+      namedImport: newNamedImport,
       moduleSpecifier: Array.isArray(renames[namedImport])
         ? renames[namedImport][1]
         : (renames[namedImport] as string),
     };
   };
+}
+
+function getNewClassName(oldName: string, classRenames: ClassRenameConfig) {
+  return classRenames[oldName] || oldName;
 }

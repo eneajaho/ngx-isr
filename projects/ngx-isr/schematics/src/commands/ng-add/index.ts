@@ -8,11 +8,10 @@ import {
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
 import {NodePackageInstallTask} from '@angular-devkit/schematics/tasks';
-import {addPackageJsonDependency} from '@schematics/angular/utility/dependencies';
+import {addPackageJsonDependency, removePackageJsonDependency} from '@schematics/angular/utility/dependencies';
 
 import {Dependency} from '../../utils/dependency';
 import {getLatestNodeVersion} from '../../utils/get-latest-node-version';
-import {removePackageJsonDependency} from "ng-morph";
 
 
 const dependencies: Dependency[] = [

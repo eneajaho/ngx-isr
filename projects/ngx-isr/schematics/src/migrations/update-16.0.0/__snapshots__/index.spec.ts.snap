@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule],
+  providers: [NgxIsrService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
@@ -16,7 +17,7 @@ export class AppModule {}
 
 exports[`isr migration update-16.0.0 should replace ngx-isr/models 1`] = `
 "import { BrowserModule } from '@angular/platform-browser';
-import { NgxIsrService } from 'ngx-isr/browser';
+import { INgxIsrService, NgxIsrState } from 'ngx-isr/models';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -30,7 +31,7 @@ export class AppModule {}
 
 exports[`isr migration update-16.0.0 should replace ngx-isr/server 1`] = `
 "import {
-  NgxIsrModule,
+  IsrModule,
   provideISR,
   ISRHandler,
   FileSystemCacheHandler,
@@ -42,7 +43,7 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule],
+  imports: [BrowserModule, IsrModule.forRoot()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
