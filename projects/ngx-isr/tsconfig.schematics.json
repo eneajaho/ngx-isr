@@ -12,7 +12,7 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "rootDir": "schematics",
-    "outDir": "../../dist/ngx-isr/schematics/ng-update",
+    "outDir": "../../dist/ngx-isr/schematics",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": false,

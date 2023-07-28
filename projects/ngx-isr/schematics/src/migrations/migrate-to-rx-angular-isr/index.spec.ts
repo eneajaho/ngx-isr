@@ -5,7 +5,7 @@ import {
 } from '@angular-devkit/schematics/testing';
 import * as path from 'path';
 
-describe('isr migration update-16.0.0', () => {
+describe('isr migrate-to-rx-angular-isr', () => {
   let appTree: UnitTestTree | undefined;
 
   it('should replace ngx-isr/server and class names', async () => {
@@ -96,7 +96,7 @@ describe('isr migration update-16.0.0', () => {
 
     tree.create(filePath, fileInput);
 
-    return runner.runSchematic(`update-16.0.0`, {}, tree);
+    return runner.runSchematic(`migrate-to-rx-angular-isr`, {}, tree);
   }
 
 });
