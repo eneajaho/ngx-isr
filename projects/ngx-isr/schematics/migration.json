@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "migrate-to-rx-angular-isr": {
+      "version": "16.0.0",
+      "description": "Migrate to @rx-angular/isr and new class names",
+      "factory": "./src/migrations/migrate-to-rx-angular-isr/index"
+    }
+  }
+}

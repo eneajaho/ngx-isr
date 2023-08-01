@@ -1,11 +1,10 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "name": "ngx-isr",
   "projectType": "library",
   "sourceRoot": "projects/ngx-isr/src",
   "prefix": "lib",
   "targets": {
-    "build": {
+    "build-package": {
       "executor": "@angular-devkit/build-angular:ng-packagr",
       "options": {
         "project": "projects/ngx-isr/ng-package.json"
@@ -19,16 +18,32 @@
         }
       },
       "defaultConfiguration": "production",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-isr"
-      ]
+      "outputs": ["{workspaceRoot}/dist/ngx-isr"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          {"command": "nx run ngx-isr:build-package"},
+          {"command": "tsc -p ./projects/ngx-isr/tsconfig.schematics.json"},
+          {"command": "copyfiles projects/ngx-isr/schematics/collection.json dist/ngx-isr/schematics -f"},
+          {"command": "copyfiles projects/ngx-isr/schematics/migration.json dist/ngx-isr/schematics -f"}
+        ]
+      }
     },
     "test": {
-      "executor": "@angular-devkit/build-angular:karma",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "main": "projects/ngx-isr/src/test.ts",
-        "tsConfig": "projects/ngx-isr/tsconfig.spec.json",
-        "karmaConfig": "projects/ngx-isr/karma.conf.js"
+        "jestConfig": "projects/ngx-isr/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     }
   }

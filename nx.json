@@ -3,7 +3,7 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "test", "server"]
+        "cacheableOperations": ["build", "build-package", "test", "server"]
       }
     }
   },
@@ -57,5 +57,8 @@
     "@nx/angular:component": {
       "style": "scss"
     }
+  },
+  "affected": {
+    "defaultBase": "origin/main"
   }
 }
