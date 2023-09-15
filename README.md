@@ -1,3 +1,18 @@
+
+# ⚠️ The library moved to [@rx-angular/isr](https://github.com/rx-angular/rx-angular/tree/main/libs/isr) 
+Migrate to the new library by using: 
+```bash
+ng update ngx-isr@0.6.0    
+```
+
+The migration will: 
+- Install `@rx-angular/isr` library latest version
+- Migrate all the changed class names imports and usages
+- Remove `ngx-isr` library from package.json
+
+Automatically! 
+
+
 <p align="center">
   <img width="460" height="300" src="https://raw.githubusercontent.com/eneajaho/ngx-isr/main/projects/ngx-isr-demo/src/assets/logo.svg">
 </p>
